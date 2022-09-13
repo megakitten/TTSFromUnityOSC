@@ -1,0 +1,4 @@
+/Unity/*
+!/Unity/ProjectSettings
+!/Unity/Packages
+!/Unity/Assets
