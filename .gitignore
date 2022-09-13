@@ -1,4 +1,4 @@
-/Unity/
-!/Unity/ProjectSettings/
-!/Unity/Packages/
-!/Unity/Assets/
+/Unity/*
+!Unity/ProjectSettings/
+!Unity/Packages/
+!Unity/Assets/
