@@ -9,7 +9,7 @@ public class GetInputText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InputField.text = "Hey Bitch! What's on your mind?";
+        InputField.text = "[ User Input ]";
     }
 
     // Update is called once per frame
