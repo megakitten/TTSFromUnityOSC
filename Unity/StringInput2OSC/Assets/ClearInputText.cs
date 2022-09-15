@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class GetInputText : MonoBehaviour
+public class ClearInputText : MonoBehaviour
 {
     [SerializeField] private TMP_InputField InputField;
         
@@ -24,3 +24,4 @@ public class GetInputText : MonoBehaviour
         }
     }
 }
+
