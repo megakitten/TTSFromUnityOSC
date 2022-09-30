@@ -50,13 +50,13 @@ def tts_string_handler(unused_addr, args, ttsString):
     fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
     synthesize = "tts --text \"" + ttsString + ".\" --out_path " + fileName
     synthResult = run(synthesize)
+    print(synthResult)
     print("Done Synthesizing")
     client.send_message("/DoneSynthesizing", "True")
 
     # TO DO : add a check that the file is there 
     print("Playing new sound file")
     playsound(fileName, True) # blocking
-
     client.send_message("/DoneSpeaking", "True")
 
 if __name__ == "__main__":
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     parser2 = argparse.ArgumentParser()
     parser2.add_argument("--ip", default="127.0.0.1",
                         help="The ip of the OSC server")
-    parser2.add_argument("--port", type=int, default=7500,
+    parser2.add_argument("--port", type=int, default=8000,
                         help="The port the OSC server is listening on")
     args2 = parser2.parse_args()
 
@@ -75,7 +75,7 @@ if __name__ == "__main__":
     # SERVER PART
     parser1 = argparse.ArgumentParser()
     parser1.add_argument("--ip", default="127.0.0.1", help="The ip to listen on")
-    parser1.add_argument("--port", type=int, default=7501, help="The port to listen on")
+    parser1.add_argument("--port", type=int, default=8001, help="The port to listen on")
     args1 = parser1.parse_args()
 
     dispatcher = Dispatcher()
