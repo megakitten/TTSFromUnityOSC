@@ -1,14 +1,6 @@
 ## Listens to OSC port for a string.
 ## On string receive, synthesize a
 ## sound file and play it. 
-## Send 
-
-## -- mvpvh (Paulus)
-##    with borrowed code from:
-##      -->
-##      -->
-##      -->
-##      -->
 
 ##################################
 ##################################
@@ -52,13 +44,12 @@ def tts_string_handler(unused_addr, args, ttsString):
     fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
     synthesize = "tts --text \"" + ttsString + "\" --out_path C:/Users/megac/Github/TTSFromUnityOSC/Python/" + fileName + " --model_name tts_models/en/vctk/fast_pitch"
     synthResult = run(synthesize)
-    print(synthResult)
-    print("Done Synthesizing")
-    client.send_message("/Progress", "Done Synthesizing")
+    print("Done Synthesizing. Result: " + synthResult)
+    client.send_message("/Progress", "Done Synthesizing. Result: " + synthResult)
     try:
         print("Playing new sound file")
         client.send_message("/Progress", "Start Speaking")
-        # playsound("C:/Users/megac/Github/test_10012022_151633.wav", True)  # blocking
+        #playsound("C:/Users/megac/Github/test_10012022_151633.wav", True)  # blocking
         playsound(fileName, True)  # blocking
         client.send_message("/Progress", "Done Speaking")
     except ValueError:
