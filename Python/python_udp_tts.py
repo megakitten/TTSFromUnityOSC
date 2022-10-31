@@ -14,7 +14,7 @@
 ##################################
 
 ## RUN: pip install playsound
-## RUN: pip install pythonosc
+## RUN: pip install python-osc
 ##      before running this script
 
 import argparse
