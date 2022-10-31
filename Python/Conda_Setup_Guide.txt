@@ -13,3 +13,5 @@ pip install tts
 # Run the following to test the tts package
 
 tts --text "Cool!" --out_path speech.wav
+# or 
+tts --text "Cool!" --out_path speech2.wav --model_name "tts_models/en/vctk/fast_pitch" --speaker_idx "VCTK_p225"

@@ -36,16 +36,20 @@ def tts_string_handler(unused_addr, args, ttsString):
     client.send_message("/Progress", "Synthesizing")
     now = datetime.now()
     #fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
+    location = "C:/Users/CUB-PC/Documents/GitHub/TTSFromUnityOSC/Python/"
     fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
-    synthesize = "tts --text \"" + ttsString + "\" --out_path C:/Users/megac/Github/TTSFromUnityOSC/Python/" + fileName + " --model_name tts_models/en/vctk/fast_pitch"
+    #speechModel = "tts_models/en/vctk/fast_pitch"
+    speechModel = "tts_models/en/ljspeech/speedy-speech"
+    synthesize = "tts --text \"" + ttsString + "\" --out_path " + location + fileName + " --model_name " + speechModel #+ " --speaker_idx \"VCTK_p271\""
     synthResult = run(synthesize)
-    print("Done Synthesizing. Result: " + synthResult)
-    client.send_message("/Progress", "Done Synthesizing. Result: " + synthResult)
+    print(synthResult)
+    print("Done Synthesizing.")
+    client.send_message("/Progress", "Done Synthesizing.")
     try:
         print("Playing new sound file")
         client.send_message("/Progress", "Start Speaking")
         #playsound("C:/Users/megac/Github/test_10012022_151633.wav", True)  # blocking
-        playsound(fileName, True)  # blocking
+        playsound(location+fileName, True)  # blocking
         client.send_message("/Progress", "Done Speaking")
     except ValueError:
         pass
@@ -72,7 +76,7 @@ if __name__ == "__main__":
     args1 = parser1.parse_args()
 
     dispatcher = Dispatcher()
-    dispatcher.map("/user_input", tts_string_handler, "Synthesizing Speech...")
+    dispatcher.map("/ai_text", tts_string_handler, "Synthesizing Speech...")
 
     server = osc_server.ThreadingOSCUDPServer(
         (args1.ip, args1.port), dispatcher)
