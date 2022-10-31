@@ -50,7 +50,7 @@ def tts_string_handler(unused_addr, args, ttsString):
     now = datetime.now()
     #fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
     fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
-    synthesize = "tts --text \"" + ttsString + "\" --out_path C:/Users/megac/Github/TTSFromUnityOSC/Python/" + fileName
+    synthesize = "tts --text \"" + ttsString + "\" --out_path C:/Users/megac/Github/TTSFromUnityOSC/Python/" + fileName + " --model_name tts_models/en/vctk/fast_pitch"
     synthResult = run(synthesize)
     print(synthResult)
     print("Done Synthesizing")
