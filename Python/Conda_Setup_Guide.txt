@@ -1,0 +1,14 @@
+# Setup conda environment with dependencies etc
+
+conda create -n text-to-speech python=3.8.10 anaconda
+conda activate text-to-speech
+
+
+pip install playsound
+pip install pythonosc
+pip install tts
+
+
+# Run the following to test the tts package
+
+tts --text "Cool!" --out_path speech.wav
