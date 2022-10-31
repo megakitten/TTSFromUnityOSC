@@ -1,6 +1,6 @@
 ## Listens to OSC port for a string.
 ## On string receive, synthesize a
-## sound file and play it. 
+## sound file and play it.
 
 ##################################
 ##################################
@@ -14,17 +14,12 @@ from operator import truediv
 import random
 import time
 import math
-
 import subprocess
-
 from datetime import datetime
-
 from pythonosc import osc_message_builder
 from pythonosc import udp_client
-
 from pythonosc.dispatcher import Dispatcher
 from pythonosc import osc_server
-
 from playsound import playsound
 
 # for running the tts code
