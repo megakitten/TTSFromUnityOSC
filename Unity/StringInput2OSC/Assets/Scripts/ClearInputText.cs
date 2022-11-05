@@ -5,7 +5,7 @@ public class ClearInputText : MonoBehaviour
 {
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private string send_id;
-    private OscClient client = new OscClient("127.0.0.1", 8001);
+    public OscClient client = new OscClient("127.0.0.1", 8000);
 
     void Start()
     {
@@ -22,6 +22,7 @@ public class ClearInputText : MonoBehaviour
             // TO DO: Send text through OSC 
             // TO DO: Add GPT support
             client.Send(send_id, inputField.text);
+            print("Message sent: " + inputField.text);
             inputField.text = "";
             inputField.Select();
         }
