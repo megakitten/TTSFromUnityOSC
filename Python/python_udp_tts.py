@@ -36,7 +36,10 @@ def tts_string_handler(unused_addr, args, ttsString):
     client.send_message("/Progress", "Synthesizing")
     now = datetime.now()
     #fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
-    location = "C:/Users/CUB-PC/Documents/GitHub/TTSFromUnityOSC/Python/"
+
+    #location = "C:/Users/CUB-PC/Documents/GitHub/TTSFromUnityOSC/Python/" ## uncomment for Install PC
+    location = "C:/Users/megac/GitHub/TTSFromUnityOSC/Python/"
+
     fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
     speechModel = "tts_models/en/vctk/fast_pitch"
     #speechModel = "tts_models/en/ljspeech/speedy-speech"

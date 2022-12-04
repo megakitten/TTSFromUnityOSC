@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 3,
-			"revision" : 3,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 42.0, 85.0, 681.0, 837.0 ],
+		"rect" : [ 35.0, 85.0, 900.0, 576.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -94,8 +94,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 22.0, 219.0, 95.0, 22.0 ],
-					"text" : "prepend /ai_text"
+					"patching_rect" : [ 22.0, 219.0, 115.0, 22.0 ],
+					"text" : "prepend /user_input"
 				}
 
 			}
@@ -147,19 +147,20 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 22.0, 257.0, 149.0, 23.0 ],
-					"text" : "udpsend 127.0.0.1 8001"
+					"text" : "udpsend 127.0.0.1 8000"
 				}
 
 			}
 , 			{
 				"box" : 				{
 					"id" : "obj-16",
+					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 22.0, 290.0, 278.0, 22.0 ],
-					"text" : "/ai_text \"What are yur most cherished memories?\""
+					"patching_rect" : [ 22.0, 290.0, 278.0, 36.0 ],
+					"text" : "/user_input \"What are yur most cherished memories?\""
 				}
 
 			}
