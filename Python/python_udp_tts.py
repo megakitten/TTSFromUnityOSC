@@ -80,8 +80,8 @@ if __name__ == "__main__":
     args1 = parser1.parse_args()
 
     dispatcher = Dispatcher()
-    #dispatcher.map("/ai_text", tts_string_handler, "Synthesizing Speech...")
-    dispatcher.map("/user_input", tts_string_handler, "Synthesizing Speech...")
+    #dispatcher.map("/user_input", tts_string_handler, "Synthesizing Speech...")
+    dispatcher.map("/ai_response", tts_string_handler, "Synthesizing Speech...")
 
     server = osc_server.ThreadingOSCUDPServer(
         (args1.ip, args1.port), dispatcher)
