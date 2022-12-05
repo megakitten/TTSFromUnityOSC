@@ -15,7 +15,7 @@ import time
 import math
 import subprocess
 from datetime import datetime
-from playsound import playsound
+import simpleaudio as sa
 from pythonosc import osc_message_builder
 from pythonosc import udp_client
 from pythonosc.dispatcher import Dispatcher
@@ -37,22 +37,32 @@ def tts_string_handler(unused_addr, args, ttsString):
     now = datetime.now()
     #fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
 
-    #location = "C:/Users/CUB-PC/Documents/GitHub/TTSFromUnityOSC/Python/" ## uncomment for Install PC
-    location = "C:/Users/megac/GitHub/TTSFromUnityOSC/Python/"
+    location = "C:/Users/CUB-PC/Documents/GitHub/TTSFromUnityOSC/Python/" ## uncomment for Install PC
+    #location = "C:/Users/megac/GitHub/TTSFromUnityOSC/Python/"
 
-    fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
-    speechModel = "tts_models/en/vctk/fast_pitch"
+    fileName = "test_" + now.strftime("%m%d%y_%H%M%S") + ".wav"
+
+    #speechModel = "tts_models/en/vctk/fast_pitch" + " --speaker_idx \"VCTK_p271\""
     #speechModel = "tts_models/en/ljspeech/speedy-speech"
-    synthesize = "tts --text \"" + str(ttsString) + "\" --out_path " + location + fileName + " --model_name " + speechModel + " --speaker_idx \"VCTK_p271\""
+    #speechModel = "tts_models/en/ljspeech/fast_pitch"
+    speechModel = "tts_models/en/vctk/vits" + " --speaker_idx \"p227\"" ## p225 - p 376
+
+    synthesize = "tts --text \"" + str(ttsString) + "\" --out_path " + location + fileName + " --model_name " + speechModel
+
     synthResult = run(synthesize)
     print(synthResult)
     print("Done Synthesizing.")
     client.send_message("/Progress", "Done Synthesizing.")
+
     try:
         print("Playing new sound file")
         client.send_message("/Progress", "Start Speaking")
-        #playsound("C:/Users/megac/Github/test_10012022_151633.wav", True)  # blocking
-        playsound(location+fileName, True)  # blocking
+
+        # PLAY AUDIO
+        wave_obj = sa.WaveObject.from_wave_file(location+fileName)
+        play_obj = wave_obj.play()
+        play_obj.wait_done()
+
         client.send_message("/Progress", "Done Speaking")
         print("Done Speaking")
     except ValueError:
@@ -80,7 +90,7 @@ if __name__ == "__main__":
     args1 = parser1.parse_args()
 
     dispatcher = Dispatcher()
-    #dispatcher.map("/user_input", tts_string_handler, "Synthesizing Speech...")
+    dispatcher.map("/user_input", tts_string_handler, "Synthesizing Speech...")
     dispatcher.map("/ai_response", tts_string_handler, "Synthesizing Speech...")
 
     server = osc_server.ThreadingOSCUDPServer(

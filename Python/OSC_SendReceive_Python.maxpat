@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 3,
-			"revision" : 2,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 35.0, 85.0, 900.0, 576.0 ],
+		"rect" : [ 42.0, 85.0, 665.0, 576.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,52 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 187.0, 49.0, 43.0, 22.0 ],
+					"presentation_linecount" : 2,
+					"text" : "Hello?"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 100.0, 49.0, 85.0, 22.0 ],
+					"presentation_linecount" : 4,
+					"text" : "What is good?"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 61.0, 49.0, 37.0, 22.0 ],
+					"presentation_linecount" : 2,
+					"text" : "What"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-3",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 23.0, 49.0, 225.0, 22.0 ],
-					"text" : "What are yur most cherished memories?"
+					"patching_rect" : [ 23.0, 49.0, 36.0, 22.0 ],
+					"text" : "Hello"
 				}
 
 			}
@@ -94,8 +133,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 22.0, 219.0, 115.0, 22.0 ],
-					"text" : "prepend /user_input"
+					"patching_rect" : [ 22.0, 219.0, 125.0, 22.0 ],
+					"text" : "prepend /ai_response"
 				}
 
 			}
@@ -134,7 +173,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 376.75, 49.0, 105.0, 23.0 ],
-					"text" : "udpreceive 8000"
+					"text" : "udpreceive 8001"
 				}
 
 			}
@@ -154,13 +193,12 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-16",
-					"linecount" : 2,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 22.0, 290.0, 278.0, 36.0 ],
-					"text" : "/user_input \"What are yur most cherished memories?\""
+					"patching_rect" : [ 22.0, 290.0, 278.0, 22.0 ],
+					"text" : "/ai_response Hello?"
 				}
 
 			}
@@ -178,6 +216,13 @@
 					"destination" : [ "obj-24", 0 ],
 					"order" : 1,
 					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-27", 0 ],
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -206,6 +251,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-27", 0 ],
 					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-27", 0 ],
+					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-27", 0 ],
+					"source" : [ "obj-5", 0 ]
 				}
 
 			}
