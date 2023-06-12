@@ -33,7 +33,7 @@ def tts_string_handler(unused_addr, args, ttsString):
     except ValueError:
         pass
     print("Starting Synthesizer")
-    client.send_message("/Progress", "Synthesizing")
+    client.send_message("/Progress", "SynthStart")
     now = datetime.now()
     #fileName = "test_" + now.strftime("%m%d%Y_%H%M%S") + ".wav"
 
@@ -43,31 +43,35 @@ def tts_string_handler(unused_addr, args, ttsString):
     fileName = "test_" + now.strftime("%m%d%y_%H%M%S") + ".wav"
 
     #speechModel = "tts_models/en/vctk/fast_pitch" + " --speaker_idx \"VCTK_p271\""
-    #speechModel = "tts_models/en/ljspeech/speedy-speech"
-    #speechModel = "tts_models/en/ljspeech/fast_pitch"
+    #speechModel = "tts_models/en/vctk/vits" + " --speaker_idx \"p229\""  ## p225 - p 376
+    #speechModel = "tts_models/en/vctk/vits" + " --speaker_idx \"p228\""  ## p225 - p 376
     speechModel = "tts_models/en/vctk/vits" + " --speaker_idx \"p227\"" ## p225 - p 376
+
+    ### DONT USE THeSE ###
+    # speechModel = "tts_models/en/ljspeech/speedy-speech"
+    # speechModel = "tts_models/en/ljspeech/fast_pitch" # THIS HAS AN ISSUE WITH SOME UNICODE CHAR
 
     synthesize = "tts --text \"" + str(ttsString) + "\" --out_path " + location + fileName + " --model_name " + speechModel
 
     synthResult = run(synthesize)
     print(synthResult)
     print("Done Synthesizing.")
-    client.send_message("/Progress", "Done Synthesizing.")
+    client.send_message("/Progress", "SynthDone")
 
     try:
         print("Playing new sound file")
-        client.send_message("/Progress", "Start Speaking")
+        client.send_message("/Progress", "Speaking")
 
         # PLAY AUDIO
         wave_obj = sa.WaveObject.from_wave_file(location+fileName)
         play_obj = wave_obj.play()
         play_obj.wait_done()
 
-        client.send_message("/Progress", "Done Speaking")
+        client.send_message("/Progress", "SpeakingDone")
         print("Done Speaking")
     except ValueError:
         pass
-        client.send_message("/Progress", "Error Speaking")
+        client.send_message("/Progress", "SpeechError")
 
 
 if __name__ == "__main__":
@@ -76,7 +80,7 @@ if __name__ == "__main__":
     parser2 = argparse.ArgumentParser()
     parser2.add_argument("--ip", default="127.0.0.1",
                         help="The ip of the OSC server")
-    parser2.add_argument("--port", type=int, default=8001,
+    parser2.add_argument("--port", type=int, default=8002,
                         help="The port the OSC server to listen to")
     args2 = parser2.parse_args()
 
